@@ -1,8 +1,9 @@
-# Pineapple Repo
+# SmockingRider
 
-Источник пакетов для iPhone и iPod с джейлбрейком — от iOS 6 до iOS 15.
+Источник приложений и твиков для iPhone и iPod с джейлбрейком — от iOS 6 до iOS 15.
+Pineapple Music — одно из приложений; сюда же можно класть другой софт.
 
-**Адрес для Cydia / Sileo / Zebra:** `https://smockingrider.github.io/pineapple-repo/`
+**Адрес для Cydia / Sileo / Zebra:** `https://smockingrider.github.io/`
 
 | Пакет | iOS | Архитектура |
 |---|---|---|
