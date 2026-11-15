@@ -1,16 +1,15 @@
 Package: com.smockingrider.pineapplemusic
+Name: Pineapple Music
 Version: 0.13.1
 Architecture: iphoneos-arm
 Maintainer: SmockingRider
+Author: SmockingRider
 Installed-Size: 440
 Depends: firmware (>= 6.0)
+Section: Multimedia
+Description: Classic iOS 6 style music player for files in /var/mobile/Media/MusicLocal
 Filename: debs/com.smockingrider.pineapplemusic_0.13.1_iphoneos-arm.deb
 Size: 155526
 MD5sum: ccf869870f4dfa81545896d0314cb9b7
 SHA1: 9a94b271be433e49bbd0bcef3c6de256622223fb
 SHA256: b565e412d6d95fef9507e356c20331575716c8a16a8c6ae5c3e724fc531724b1
-Section: Multimedia
-Description: Classic iOS 6 style music player for files in /var/mobile/Media/MusicLocal
-Author: SmockingRider
-Name: Pineapple Music
-
