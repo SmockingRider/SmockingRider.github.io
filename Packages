@@ -8,7 +8,7 @@ Installed-Size: 440
 Depends: firmware (>= 6.0)
 Section: Multimedia
 Description: Classic iOS 6 style music player for files in /var/mobile/Media/MusicLocal
-Filename: debs/com.smockingrider.pineapplemusic_0.13.1_iphoneos-arm.deb
+Filename: pineapple-music/debs/com.smockingrider.pineapplemusic_0.13.1_iphoneos-arm.deb
 Size: 155526
 MD5sum: ccf869870f4dfa81545896d0314cb9b7
 SHA1: 9a94b271be433e49bbd0bcef3c6de256622223fb
@@ -24,7 +24,7 @@ Installed-Size: 472
 Depends: firmware (>= 15.0)
 Section: Multimedia
 Description: Classic iOS 6 style music player for files in /var/mobile/Media/MusicLocal (iOS 15, rootless)
-Filename: debs/com.smockingrider.pineapplemusic15_1.0.1_iphoneos-arm64.deb
+Filename: pineapple-music/debs/com.smockingrider.pineapplemusic15_1.0.1_iphoneos-arm64.deb
 Size: 157190
 MD5sum: 2bb9776b12a949c260e5e177cbebc3f7
 SHA1: 916962a4fa4ec58cc505a106e893fd0d8a3492de

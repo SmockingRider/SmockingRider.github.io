@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
-"""Пересобирает индекс репозитория Cydia/Sileo/Zebra из .deb в папке debs/:
+"""Пересобирает индекс источника SmockingRider (Cydia/Sileo/Zebra):
 Packages, Packages.gz, Packages.bz2 и список пакетов в index.html.
+
+У каждого приложения свой репозиторий GitHub с папкой debs/ и включёнными
+Pages: https://smockingrider.github.io/<приложение>/debs/… Список приложений —
+apps.txt (по одному имени репозитория в строке). Локальные копии этих
+репозиториев лежат в APPS_DIR (по умолчанию ../SmockingRider-apps).
+Пакеты в debs/ самого источника тоже учитываются.
 Только стандартная библиотека Python.
     python3 tools/update-repo.py"""
 import bz2, gzip, hashlib, io, lzma, os, re, tarfile, html
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DEBS = os.path.join(ROOT, 'debs')
+APPS_DIR = os.environ.get('APPS_DIR', os.path.join(os.path.dirname(ROOT), 'SmockingRider-apps'))
 FIELD_ORDER = ['Package', 'Name', 'Version', 'Architecture', 'Maintainer', 'Author',
                'Installed-Size', 'Depends', 'Conflicts', 'Replaces', 'Section',
                'Description', 'Depiction', 'Icon']
@@ -49,19 +55,36 @@ def parse(text):
 def ver_key(v):
     return [int(x) if x.isdigit() else x for x in re.split(r'[.\-~+]', v)]
 
+def sources():
+    """(папка с .deb, префикс пути от корня источника)"""
+    yield os.path.join(ROOT, 'debs'), 'debs/'
+    apps = os.path.join(ROOT, 'apps.txt')
+    if os.path.exists(apps):
+        for line in open(apps, encoding='utf-8'):
+            name = line.split('#')[0].strip()
+            if not name:
+                continue
+            d = os.path.join(APPS_DIR, name, 'debs')
+            if not os.path.isdir(d):
+                raise SystemExit('нет папки %s — склонируйте репозиторий %s в %s' % (d, name, APPS_DIR))
+            yield d, name + '/debs/'
+
 entries = []
-for f in sorted(os.listdir(DEBS)):
-    if not f.endswith('.deb'):
+for folder, prefix in sources():
+    if not os.path.isdir(folder):
         continue
-    p = os.path.join(DEBS, f)
-    text, data = control_of(p)
-    c = parse(text)
-    c['Filename'] = 'debs/' + f
-    c['Size'] = str(len(data))
-    c['MD5sum'] = hashlib.md5(data).hexdigest()
-    c['SHA1'] = hashlib.sha1(data).hexdigest()
-    c['SHA256'] = hashlib.sha256(data).hexdigest()
-    entries.append(c)
+    for f in sorted(os.listdir(folder)):
+        if not f.endswith('.deb'):
+            continue
+        p = os.path.join(folder, f)
+        text, data = control_of(p)
+        c = parse(text)
+        c['Filename'] = prefix + f
+        c['Size'] = str(len(data))
+        c['MD5sum'] = hashlib.md5(data).hexdigest()
+        c['SHA1'] = hashlib.sha1(data).hexdigest()
+        c['SHA256'] = hashlib.sha256(data).hexdigest()
+        entries.append(c)
 entries.sort(key=lambda c: (c['Package'], ver_key(c.get('Version', '0'))))
 
 out = []
