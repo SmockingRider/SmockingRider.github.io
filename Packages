@@ -13,3 +13,19 @@ Size: 155526
 MD5sum: ccf869870f4dfa81545896d0314cb9b7
 SHA1: 9a94b271be433e49bbd0bcef3c6de256622223fb
 SHA256: b565e412d6d95fef9507e356c20331575716c8a16a8c6ae5c3e724fc531724b1
+
+Package: com.smockingrider.pineapplemusic15
+Name: Pineapple Music
+Version: 1.0.1
+Architecture: iphoneos-arm64
+Maintainer: SmockingRider
+Author: SmockingRider
+Installed-Size: 472
+Depends: firmware (>= 15.0)
+Section: Multimedia
+Description: Classic iOS 6 style music player for files in /var/mobile/Media/MusicLocal (iOS 15, rootless)
+Filename: debs/com.smockingrider.pineapplemusic15_1.0.1_iphoneos-arm64.deb
+Size: 157190
+MD5sum: 2bb9776b12a949c260e5e177cbebc3f7
+SHA1: 916962a4fa4ec58cc505a106e893fd0d8a3492de
+SHA256: 3f3ee5b372901646cb3088e937885a815993e2b66e07e4a6fed14a7d3a8191c9
